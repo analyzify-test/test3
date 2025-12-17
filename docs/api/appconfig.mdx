@@ -1,0 +1,82 @@
+---
+title: AppConfig
+description: Configuration interface for application database connection and logging settings
+generated: true
+last_updated: 2025-12-17
+source_file: src/index.ts
+symbol_name: AppConfig
+---
+
+# AppConfig
+
+<Callout type="info">
+This documentation was automatically generated from source code.
+</Callout>
+
+## Overview
+
+AppConfig is a TypeScript interface that defines the configuration structure for an application. It specifies required database connection settings and optional logging preferences. Use this interface to ensure type-safe application configuration throughout your codebase.
+
+## Signature
+
+```typescript
+export interface AppConfig
+```
+
+## Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `databaseUrl` | `string` | Yes | The connection URL for the database. This should include protocol, host, port, and database name. |
+| `logLevel` | `string` | No | The logging level for the application (e.g., 'debug', 'info', 'warn', 'error'). Controls verbosity of application logs. |
+
+## Returns
+
+**Type:** `void`
+
+This is an interface definition and does not return a value
+
+## Examples
+
+### Basic Configuration
+
+Minimal configuration with only required fields
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: "postgresql://localhost:5432/mydb"
+};
+```
+
+### Full Configuration
+
+Complete configuration including optional log level
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: "postgresql://localhost:5432/mydb",
+  logLevel: "debug"
+};
+```
+
+### Using with Function Parameter
+
+Type-safe function parameter using AppConfig interface
+
+```typescript
+function initializeApp(config: AppConfig): void {
+  // Connect to database using config.databaseUrl
+  // Set logging level if config.logLevel is provided
+}
+
+initializeApp({
+  databaseUrl: "postgresql://localhost:5432/mydb",
+  logLevel: "info"
+});
+```
+
+## Notes
+
+- The databaseUrl field is required and must be provided when creating an AppConfig object
+- The logLevel field is optional and can be omitted from configuration objects
+- This interface does not validate the format of the database URL or log level values
