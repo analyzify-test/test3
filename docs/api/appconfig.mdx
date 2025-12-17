@@ -1,0 +1,82 @@
+---
+title: AppConfig
+description: Configuration interface for application database and logging settings
+generated: true
+last_updated: 2025-12-17
+source_file: src/index.ts
+symbol_name: AppConfig
+---
+
+# AppConfig
+
+<Callout type="info">
+This documentation was automatically generated from source code.
+</Callout>
+
+## Overview
+
+AppConfig is an interface that defines the configuration structure for application settings. It specifies the required database connection URL and an optional logging level. This interface is typically used to enforce type safety when configuring application instances or modules that require database connectivity and logging capabilities.
+
+## Signature
+
+```typescript
+export interface AppConfig
+```
+
+## Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `databaseUrl` | `string` | Yes | The connection URL for the database |
+| `logLevel` | `string` | No | The logging level for the application (e.g., 'info', 'debug', 'error') |
+
+## Returns
+
+**Type:** `void`
+
+This is an interface definition and does not return a value
+
+## Examples
+
+### Basic Configuration
+
+Creating a minimal configuration with only the required databaseUrl field
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: 'postgresql://localhost:5432/mydb'
+};
+```
+
+### Full Configuration
+
+Creating a complete configuration with both required and optional fields
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: 'postgresql://localhost:5432/mydb',
+  logLevel: 'debug'
+};
+```
+
+### Using with a Function
+
+Using AppConfig as a type for function parameters to ensure type safety
+
+```typescript
+function initializeApp(config: AppConfig): void {
+  // Connect to database using config.databaseUrl
+  // Set logging level using config.logLevel
+}
+
+initializeApp({
+  databaseUrl: 'postgresql://localhost:5432/mydb',
+  logLevel: 'info'
+});
+```
+
+## Notes
+
+- The databaseUrl field is required and must be provided when implementing this interface
+- The logLevel field is optional and can be omitted if default logging behavior is acceptable
+- This interface is exported and can be imported for use in other modules
