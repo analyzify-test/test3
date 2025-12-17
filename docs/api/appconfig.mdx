@@ -1,0 +1,68 @@
+---d
+title: AppConfig
+description: Configuration interface for application settings including database connection and logging
+generated: true
+last_updated: 2025-12-17
+source_file: src/index.ts
+symbol_name: AppConfig
+---
+
+# AppConfig
+
+<Callout type="info">
+This documentation was automatically generated from source code.
+</Callout>
+
+## Overview
+
+AppConfig is a TypeScript interface that defines the configuration structure for the application. It specifies required and optional settings needed to initialize and run the application, including database connectivity and logging preferences. Use this interface to ensure type-safe configuration throughout your application.
+
+## Signature
+
+```typescript
+export interface AppConfig {
+  databaseUrl: string;
+  logLevel?: string;
+}
+```
+
+## Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `databaseUrl` | `string` | Yes | The connection URL for the database |
+| `logLevel` | `string` | No | The logging level for the application (e.g., 'debug', 'info', 'warn', 'error') |
+
+## Returns
+
+**Type:** `N/A`
+
+This is an interface definition and does not return a value
+
+## Examples
+
+### Basic Configuration
+
+Creating a minimal configuration object with only the required databaseUrl property
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: 'postgresql://localhost:5432/mydb'
+};
+```
+
+### Full Configuration
+
+Creating a complete configuration object with both required and optional properties
+
+```typescript
+const config: AppConfig = {
+  databaseUrl: 'postgresql://localhost:5432/mydb',
+  logLevel: 'debug'
+};
+```
+
+## Notes
+
+- The databaseUrl field is required and must be provided
+- The logLevel field is optional and can be omitted from configuration objects
