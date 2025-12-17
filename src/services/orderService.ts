@@ -92,4 +92,37 @@ export class OrderService {
 
     return cancelled;
   }
+
+  /**
+   * Processes a refund for an order
+   * Returns the refund amount
+   */
+  async refundOrder(orderId: string, refundPercent: number): Promise<number> {
+    const order = await this.getOrder(orderId);
+    if (!order) {
+      throw new Error('Order not found');
+    }
+
+    // Calculate refund amount
+    const refundAmount = order.total * refundPercent;
+
+    // Update order status
+    await this.updateOrderStatus(orderId, 'refunded');
+
+    this.logger.info('Order refunded', { orderId, refundAmount });
+
+    return refundAmount;
+  }
+
+  /**
+   * Gets the total revenue from all completed orders
+   */
+  async getTotalRevenue(): Promise<number> {
+    const orders = await this.db.findMany<Order>('orders', { status: 'completed' });
+    let total = 0;
+    for (const order of orders) {
+      total = total + order.total;
+    }
+    return total;
+  }
 }
